@@ -1,0 +1,10 @@
+﻿.filters, .statements, .ProfileData {
+    margin-top: 20px;
+    margin-right: 0;
+    margin-left: 0;
+}
+
+#ProfileImage{
+    width:225px;
+    height:225px;
+}

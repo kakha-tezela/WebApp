@@ -1,0 +1,132 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8" />
+    <title>განცხადებები</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js" type="text/javascript"></script>
+
+    <link rel="stylesheet" href="Style/Bootstrapoverride.css">
+
+</head>
+<body>
+
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="row filters">
+
+                <div class="col-12 col-sm-12 col-md-3 col-lg-3">
+                    <input id="TitleTxt" type="text" class="form-control" placeholder="სათაური" />
+                </div>
+
+                <div class="col-12 col-sm-12 col-md-3 col-lg-3">
+                    <button id="filter" type="button" class="btn btn-primary">გაფილტვრა</button>
+                </div>
+
+            </div>
+
+
+            <div class="row statements">
+
+                <div class="col table-responsive">
+                    <table id="StatementsTable" class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">სურათი</th>
+                                <th scope="col">სათაური</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+
+        $(document).ready(function () {
+
+            var token = '5bPI8pXh07ghtxA30HvFYZ9_XViumEmhya8k0VbxezW7VwlyT32ZNmQIfar92_V6QB-FOJ-_5GqRG-qMowG96EujZZBolfonAmaXknXMNLfJ-zRi98xeFj2O8HCbc717kG0I7LdW-jrnqkK_aWB_j1THp9q9VKI465oO9Ywp8kJXXL-RXTYicLMjYDie2H5qnqWjDJxE4IGRUmsC1P7edJH6dmtmZG2QyG0YkJ3Dr0sGLwfan8aY2OgcFWk3Uq7Frtgs5g3Nk_lMe3YamkIMcWlUdF2IMtEpPiBC5jNTZ34i1hl9I7Th4VfL4aE37uj9om0VLFUXyf8WnK5PuOrOzC0optnMLjCG3q5hJpJCmRvU5_ntvjB3h3k3Yl3XHpAQ_eeBLgp9OOlO9PcaNIi-SOVZotl8gXj3QNOv9_B8jUDmHx-25Xdnn6f2UuyhhvufO6tKbNMSQeS4YK0FChzDvCs4AjhGnAGvZfQHLaRoIluUQmbYzUizu1ovU_v95yuj';
+
+            var StatementsTable = $('#StatementsTable').DataTable({
+
+                ordering: false,
+                searching: false,
+                info: false,
+                scrollY: 300,
+
+                ajax:
+                {
+                    type: 'POST',
+                    headers: {
+                        'Authorization': 'Bearer ' + token
+                    },
+                    url: 'http://localhost:58479/api/statements/1/15',
+                    dataSrc: 'Data'
+                },
+
+                columns: [
+                    {
+                        data: 'ImageUrl',
+                        render: function (data, type, row) {
+                            return '<img width="50" height="50" src="' + data + '"/>';
+                        }
+                    },
+
+                    { data: 'Title' },
+
+                    {
+                        data: 'Id',
+                        render: function (data, type, row) {
+                            return '<a href="/StatementDetail.html?Id='+data+'"><span>დეტალურად</span></a>';
+                        }
+                    }
+                    
+                ]
+
+            });
+
+
+
+            $('#filter').on('click', function (e) {
+
+                var Filters = {
+                    'Title': $('#TitleTxt').val()
+                };
+
+                $.ajax({
+
+                    url: 'http://localhost:58479/api/statements/1/15',
+                    type: "POST",
+                    headers: {
+                        'Authorization': 'Bearer ' + token
+                    },
+                    data: JSON.stringify(Filters),
+                    contentType: "application/json",
+                    success: function (response) {
+
+                        StatementsTable.clear().draw();
+                        StatementsTable.rows.add(response.Data).draw();
+                    }
+                })
+            });
+
+        })
+
+    </script>
+
+</body>
+</html>

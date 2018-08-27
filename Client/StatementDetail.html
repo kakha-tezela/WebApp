@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>დეტალები</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="Style/Bootstrapoverride.css">
+
+</head>
+<body>
+
+    <div class="container">
+
+        <div class="row ProfileData">
+
+            <div class="col-12 col-sm-12 col-md-3 col-lg-3">
+                <img id="ProfileImage" />
+            </div>
+
+
+            <div class="col-12 col-sm-12 col-md-3 col-lg-3">
+
+                <table class="table table-striped">
+
+                    <tr>
+                        <td><p>სათაური</p></td>
+                        <td>
+                            <p id="Title"></p>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><p>ტელეფონი</p></td>
+                        <td>
+                            <p id="Phone"></p>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><p>აღწერა</p></td>
+                        <td>
+                            <p id="Description"></p>
+                        </td>
+                    </tr>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        $(document).ready(function () {
+
+            var urlParams = new URLSearchParams(window.location.search);
+            var Id = urlParams.get('Id');
+
+
+            var token = '5bPI8pXh07ghtxA30HvFYZ9_XViumEmhya8k0VbxezW7VwlyT32ZNmQIfar92_V6QB-FOJ-_5GqRG-qMowG96EujZZBolfonAmaXknXMNLfJ-zRi98xeFj2O8HCbc717kG0I7LdW-jrnqkK_aWB_j1THp9q9VKI465oO9Ywp8kJXXL-RXTYicLMjYDie2H5qnqWjDJxE4IGRUmsC1P7edJH6dmtmZG2QyG0YkJ3Dr0sGLwfan8aY2OgcFWk3Uq7Frtgs5g3Nk_lMe3YamkIMcWlUdF2IMtEpPiBC5jNTZ34i1hl9I7Th4VfL4aE37uj9om0VLFUXyf8WnK5PuOrOzC0optnMLjCG3q5hJpJCmRvU5_ntvjB3h3k3Yl3XHpAQ_eeBLgp9OOlO9PcaNIi-SOVZotl8gXj3QNOv9_B8jUDmHx-25Xdnn6f2UuyhhvufO6tKbNMSQeS4YK0FChzDvCs4AjhGnAGvZfQHLaRoIluUQmbYzUizu1ovU_v95yuj';
+
+            $.ajax({
+
+                url: 'http://localhost:58479/api/statements/' + Id,
+
+                headers: {
+                    'Authorization': 'Bearer ' + token
+                },
+
+                success: function (response) {
+
+                    $("#ProfileImage").attr("src", response.ImageUrl);
+                    $("#Title").text(response.Title);
+                    $("#Phone").text(response.Phone);
+                    $("#Description").text(response.Description);
+                }
+            })
+
+        })
+
+    </script>
+
+
+
+
+
+</body>
+</html>
