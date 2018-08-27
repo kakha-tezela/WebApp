@@ -1,9 +1,0 @@
-c:\users\kakha\source\repos\WebApplication\ClientApp\bin\ClientApp.dll.config
-c:\users\kakha\source\repos\WebApplication\ClientApp\bin\ClientApp.dll
-c:\users\kakha\source\repos\WebApplication\ClientApp\bin\ClientApp.pdb
-c:\users\kakha\source\repos\WebApplication\ClientApp\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
-c:\users\kakha\source\repos\WebApplication\ClientApp\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-c:\users\kakha\source\repos\WebApplication\ClientApp\obj\Debug\ClientApp.csprojResolveAssemblyReference.cache
-c:\users\kakha\source\repos\WebApplication\ClientApp\obj\Debug\ClientApp.csproj.CoreCompileInputs.cache
-c:\users\kakha\source\repos\WebApplication\ClientApp\obj\Debug\ClientApp.dll
-c:\users\kakha\source\repos\WebApplication\ClientApp\obj\Debug\ClientApp.pdb
